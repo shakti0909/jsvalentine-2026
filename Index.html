@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Security Check & Deal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        /* CSS STYLES - NO NEED TO EDIT THIS SECTION UNLESS YOU WANT TO CHANGE COLORS */
+        :root {
+            --primary: #FF9900; 
+            --blue: #0066c0;    
+            --bg: #f3f3f3;
+            --text: #111;
+        }
+        body { font-family: 'Roboto', sans-serif; background-color: white; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; flex-direction: column; }
+        
+        /* Captcha Styles */
+        #captcha-screen { background: white; padding: 20px; border: 1px solid #d3d3d3; border-radius: 5px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); max-width: 350px; text-align: center; }
+        .captcha-header { background: #4285f4; color: white; padding: 15px; text-align: left; }
+        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin: 10px 0; }
+        .grid-img { width: 100%; height: 80px; object-fit: cover; border: 2px solid transparent; cursor: pointer; }
+        .grid-img.selected { border: 3px solid #4285f4; transform: scale(0.95); }
+        .verify-btn { background: #4285f4; color: white; border: none; padding: 10px 25px; font-weight: bold; border-radius: 4px; cursor: pointer; margin-top: 10px; width: 100%; }
+
+        /* Product Styles */
+        #product-screen { display: none; width: 100%; max-width: 450px; padding: 15px; box-sizing: border-box; animation: fadeIn 0.5s; }
+        .product-img { width: 100%; border-radius: 10px; margin-bottom: 10px; }
+        .product-title { font-size: 1.4rem; color: var(--text); margin-bottom: 5px; line-height: 1.3; }
+        .price { color: #B12704; font-size: 1.2rem; margin-bottom: 10px; }
+        .stock { color: #007600; font-size: 0.9rem; margin-bottom: 15px; }
+        .features { font-size: 0.9rem; color: #555; list-style: none; padding: 0; }
+        .features li { margin-bottom: 5px; padding-left: 15px; position: relative; }
+        .features li::before { content: "✔"; position: absolute; left: 0; color: var(--primary); }
+        .action-btn { width: 100%; padding: 15px; border: none; border-radius: 25px; font-size: 1rem; font-weight: bold; margin-bottom: 10px; cursor: pointer; }
+        .buy-now { background: #FFD814; border: 1px solid #FCD200; }
+        .save-later { background: #e7e7e7; border: 1px solid #d3d3d3; color: #333; }
+
+        /* Negotiation Styles */
+        #negotiation-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); display: flex; justify-content: center; align-items: center; z-index: 100; display: none; }
+        .negotiation-card { background: white; padding: 20px; border-radius: 15px; text-align: center; width: 85%; max-width: 320px; animation: popIn 0.3s; }
+        .bribe-img { width: 100%; height: 180px; object-fit: cover; border-radius: 10px; margin-bottom: 15px; }
+
+        /* Success Styles */
+        #success-screen { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: white; display: flex; flex-direction: column; justify-content: center; align-items: center; display: none; text-align: center; z-index: 200; }
+
+        @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+        @keyframes popIn { from {transform: scale(0.8);} to {transform: scale(1);} }
+    </style>
+</head>
+<body>
+
+    <div id="captcha-screen">
+        <div class="captcha-header">
+            <h2>Select all images with</h2>
+            <h1>The Groom 🤵</h1>
+            <p>Click verify once none are left.</p>
+        </div>
+        
+        <div class="grid">
+            <img src="https://media.giphy.com/media/l0HlCqV35hdEg2LS0/giphy.gif" class="grid-img" onclick="toggleSelect(this)">
+            <img src="https://source.unsplash.com/random/100x100?wedding" class="grid-img" onclick="toggleSelect(this)">
+            <img src="https://source.unsplash.com/random/100x100?man" class="grid-img" onclick="toggleSelect(this)">
+            <img src="https://source.unsplash.com/random/100x100?groom" class="grid-img" onclick="toggleSelect(this)">
+            <img src="https://source.unsplash.com/random/100x100?love" class="grid-img" onclick="toggleSelect(this)">
+            <img src="https://source.unsplash.com/random/100x100?flowers" class="grid-img" onclick="toggleSelect(this)">
+            <img src="https://source.unsplash.com/random/100x100?couple" class="grid-img" onclick="toggleSelect(this)">
+            <img src="https://source.unsplash.com/random/100x100?heart" class="grid-img" onclick="toggleSelect(this)">
+            <img src="https://source.unsplash.com/random/100x100?smile" class="grid-img" onclick="toggleSelect(this)">
+        </div>
+
+        <button class="verify-btn" onclick="passCaptcha()">VERIFY</button>
+    </div>
+
+    <div id="product-screen">
+        <img src="https://media.giphy.com/media/l0HlCqV35hdEg2LS0/giphy.gif" class="product-img">
+        
+        <h1 class="product-title">Future Husband (2026 Model) - GenAI Edition | Bhubaneswar Limited Release</h1>
+        
+        <div class="price">Price: 1 ❤️ (Non-refundable)</div>
+        <div class="stock">In Stock. Ships to Bubuda immediately.</div>
+
+        <ul class="features">
+            <li>High Performance Husband (v2.026)</li>
+            <li>Comes with Mutton Kassa cooking skills 🍖</li>
+            <li>Compatible with K-Drama Marathons 📺</li>
+            <li>Includes lifetime tech support & AWS credits ☁️</li>
+            <li>Warning: May make bad jokes</li>
+        </ul>
+
+        <br>
+        <button class="action-btn buy-now" onclick="finishDeal()">Add to Cart (YES)</button>
+        <button class="action-btn save-later" onclick="triggerNegotiation()">Save for Later (No)</button>
+    </div>
+
+    <div id="negotiation-overlay">
+        <div class="negotiation-card">
+            <h2 id="neg-title">Wait! Special Offer!</h2>
+            <img id="neg-img" src="" class="bribe-img">
+            <p id="neg-text">If you say yes now, I will include this!</p>
+            
+            <button class="action-btn buy-now" onclick="finishDeal()">Okay, Deal! (YES)</button>
+            <button class="action-btn save-later" onclick="nextOffer()">Hmm... Still No</button>
+        </div>
+    </div>
+
+    <div id="success-screen">
+        <img src="https://media.giphy.com/media/UKWXwkVFXUYe8r6f83/giphy.gif" style="width:100%; max-width:400px;">
+        
+        <h1 style="color: #007600;">Order Placed! ✅</h1>
+        <p>Delivery Date: Feb 14th & Feb 22nd</p>
+        <p>Thank you Bubuda! ❤️</p>
+    </div>
+
+    <script>
+        // --- JAVASCRIPT LOGIC ---
+
+        function toggleSelect(img) { img.classList.toggle('selected'); }
+
+        function passCaptcha() {
+            const btn = document.querySelector('.verify-btn');
+            btn.innerText = "Verifying...";
+            setTimeout(() => {
+                document.getElementById('captcha-screen').style.display = 'none';
+                document.getElementById('product-screen').style.display = 'block';
+            }, 1000);
+        }
+
+        // 🔴 [EDIT] THIS IS THE "BRIBE" SECTION
+        // Change the 'img' links to your own photos (Food, Posters, etc.)
+        // Change 'title' and 'text' to whatever you want to offer
+        const offers = [
+            {
+                title: "Wait! Mutton Upgrade!",
+                img: "https://glebekitchen.com/wp-content/uploads/2019/12/muttoncurrytop-1.jpg", 
+                text: "I will cook spicy Mutton Kassa for you every Sunday!"
+            },
+            {
+                title: "K-Drama Subscription!",
+                img: "https://i.pinimg.com/originals/e5/23/e8/e523e80d998188151392dfde7a718c32.jpg", 
+                text: "I will watch 'Business Proposal' again without checking my phone!"
+            },
+            {
+                title: "Lifetime Foot Massage!",
+                img: "https://media.giphy.com/media/l2Je2M4Nfrit0L7sQ/giphy.gif",
+                text: "Unlimited token for massages after wedding shopping."
+            },
+            {
+                title: "Last Chance Offer!",
+                img: "https://media.giphy.com/media/26FLdmIp6wJr91JAI/giphy.gif",
+                text: "PLEASE? I'll be the best husband ever! (No returns allowed anyway)"
+            }
+        ];
+
+        let offerIndex = 0;
+
+        function triggerNegotiation() {
+            document.getElementById('negotiation-overlay').style.display = 'flex';
+            updateOffer();
+        }
+
+        function updateOffer() {
+            const data = offers[offerIndex];
+            document.getElementById('neg-title').innerText = data.title;
+            document.getElementById('neg-img').src = data.img;
+            document.getElementById('neg-text').innerText = data.text;
+        }
+
+        function nextOffer() {
+            offerIndex++;
+            if (offerIndex < offers.length) {
+                updateOffer();
+            } else {
+                alert("Out of stock on 'No'! You have to take me now! ❤️");
+                finishDeal();
+            }
+        }
+
+        function finishDeal() {
+            document.getElementById('negotiation-overlay').style.display = 'none';
+            document.getElementById('product-screen').style.display = 'none';
+            document.getElementById('success-screen').style.display = 'flex';
+            startConfetti(); 
+        }
+
+        function startConfetti() {
+            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff'];
+            for(let i=0; i<100; i++) {
+                const conf = document.createElement('div');
+                conf.style.position = 'fixed';
+                conf.style.width = '10px'; 
+                conf.style.height = '10px';
+                conf.style.background = colors[Math.floor(Math.random()*colors.length)];
+                conf.style.left = Math.random()*100 + 'vw';
+                conf.style.top = '-10px';
+                conf.style.transition = 'top 3s ease-in, transform 3s linear';
+                document.body.appendChild(conf);
+                setTimeout(() => {
+                    conf.style.top = '110vh';
+                    conf.style.transform = 'rotate(720deg)';
+                }, 100);
+            }
+        }
+    </script>
+</body>
+</html>
