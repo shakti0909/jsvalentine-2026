@@ -137,6 +137,11 @@
                 text: "I will gulugulu puchu puchu you always!"
             },
             {
+                title: "Wait! pengu pengu Hugudu for Life!",
+                img: "./hug.jpg", 
+                text: "I will give you unlimited hugs and cuddles whenever you want!"
+            }
+            {
                 title: "Attention Subscription!",
                 img: "./attention.jpg", 
                 text: "I will give you 100 200 300 infinite attention to you !"
@@ -152,6 +157,11 @@
                 text: "PLEASE? I'll be the best husbandudu ever! (No returns allowed anyway)"
             }
         ];
+
+        offers.forEach(offer => {
+            const preloading = new Image();
+            preloading.src = offer.img;
+        });
 
         let offerIndex = 0;
 
