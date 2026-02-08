@@ -50,6 +50,15 @@
 </head>
 <body>
 
+    <!-- Add this just after <body> -->
+<div id="login-screen" style="display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:100vh;">
+    <h2>Please identify yourself</h2>
+    <p>Enter the secret code of communication:</p>
+    <input type="password" id="pwd-input" placeholder="Secret code" style="padding:8px; font-size:1rem;">
+    <button onclick="checkPwd()" style="margin-top:10px; padding:8px 20px;">Login</button>
+    <div id="pwd-hint" style="color:#B12704; margin-top:8px;"></div>
+</div>
+
     <div id="captcha-screen">
         <div class="captcha-header">
             <h2>Please select all the images that show</h2>
@@ -112,9 +121,32 @@
         <p>Delivery Date: Feb 22nd</p>
         <p>Happy Propose day! Love you Bubuda! ❤️</p>
     </div>
+    
 
     <script>
         // --- JAVASCRIPT LOGIC ---
+
+                // ...existing code...
+        let pwdTries = 0;
+        function checkPwd() {
+            const input = document.getElementById('pwd-input').value;
+            const hint = document.getElementById('pwd-hint');
+            if (input === "hototo") {
+                document.getElementById('login-screen').style.display = 'none';
+                document.getElementById('captcha-screen').style.display = 'block';
+            } else {
+                pwdTries++;
+                if (pwdTries === 1) {
+                    hint.innerText = "Hint: It's 6 letters, starts with 'h', ends with 'o'.";
+                } else if (pwdTries === 2) {
+                    hint.innerText = "Hey! You are on the wrong site. Please check the bio of your Valentine, not here. Pehli fursat me niklo!";
+                    setTimeout(() => {
+                        document.getElementById('login-screen').innerHTML = "<h2>Access Denied</h2>";
+                    }, 2500);
+                }
+            }
+        }
+        // ...existing code...
 
         function toggleSelect(img) { img.classList.toggle('selected'); }
 
