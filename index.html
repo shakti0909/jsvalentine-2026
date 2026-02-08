@@ -19,7 +19,7 @@
         #captcha-screen { background: white; padding: 20px; border: 1px solid #d3d3d3; border-radius: 5px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); max-width: 350px; text-align: center; }
         .captcha-header { background: #4285f4; color: white; padding: 15px; text-align: left; }
         .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin: 10px 0; }
-        .grid-img { width: 100%; height: 80px; object-fit: cover; border: 2px solid transparent; cursor: pointer; }
+        .grid-img { width: 100%; height: 150px; object-position: top; object-fit: contain; border: 2px solid transparent; cursor: pointer; border-radius: 4px;}
         .grid-img.selected { border: 3px solid #4285f4; transform: scale(0.95); }
         .verify-btn { background: #4285f4; color: white; border: none; padding: 10px 25px; font-weight: bold; border-radius: 4px; cursor: pointer; margin-top: 10px; width: 100%; }
 
@@ -39,7 +39,7 @@
         /* Negotiation Styles */
         #negotiation-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); display: flex; justify-content: center; align-items: center; z-index: 100; display: none; }
         .negotiation-card { background: white; padding: 20px; border-radius: 15px; text-align: center; width: 85%; max-width: 320px; animation: popIn 0.3s; }
-        .bribe-img { width: 100%; height: 180px; object-fit: cover; border-radius: 10px; margin-bottom: 15px; }
+        .bribe-img { width: 100%; height: 180px; object-fit: contain; border-radius: 10px; margin-bottom: 15px; }
 
         /* Success Styles */
         #success-screen { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: white; display: flex; flex-direction: column; justify-content: center; align-items: center; display: none; text-align: center; z-index: 200; }
@@ -58,22 +58,22 @@
         </div>
         
         <div class="grid">
-            <img src="./img1.jpg" class="grid-img" onclick="toggleSelect(this)">
-            <img src="https://source.unsplash.com/random/100x100?wedding" class="grid-img" onclick="toggleSelect(this)">
-            <img src="https://source.unsplash.com/random/100x100?man" class="grid-img" onclick="toggleSelect(this)">
-            <img src="https://source.unsplash.com/random/100x100?groom" class="grid-img" onclick="toggleSelect(this)">
-            <img src="https://source.unsplash.com/random/100x100?love" class="grid-img" onclick="toggleSelect(this)">
-            <img src="https://source.unsplash.com/random/100x100?flowers" class="grid-img" onclick="toggleSelect(this)">
-            <img src="https://source.unsplash.com/random/100x100?couple" class="grid-img" onclick="toggleSelect(this)">
-            <img src="https://source.unsplash.com/random/100x100?heart" class="grid-img" onclick="toggleSelect(this)">
-            <img src="https://source.unsplash.com/random/100x100?smile" class="grid-img" onclick="toggleSelect(this)">
+            <img src="./img_1.jpg" class="grid-img" onclick="toggleSelect(this)">
+            <img src="./img_2.jpg" class="grid-img" onclick="toggleSelect(this)">
+            <img src="./img_3.jpg" class="grid-img" onclick="toggleSelect(this)">
+            <img src="./img_1.jpg" class="grid-img" onclick="toggleSelect(this)">
+            <img src="./img_2.jpg" class="grid-img" onclick="toggleSelect(this)">
+            <img src="./img_3.jpg" class="grid-img" onclick="toggleSelect(this)">
+            <img src="./img_1.jpg" class="grid-img" onclick="toggleSelect(this)">
+            <img src="./img_2.jpg" class="grid-img" onclick="toggleSelect(this)">
+            <img src="./img_3.jpg" class="grid-img" onclick="toggleSelect(this)">
         </div>
 
-        <button class="verify-btn" onclick="passCaptcha()">VERIFY</button>
+        <button class="verify-btn" onclick="passCaptcha()">VERIFY <br>(Also works if you identify in heart just click this)</button>
     </div>
 
     <div id="product-screen">
-        <img src="https://media.giphy.com/media/l0HlCqV35hdEg2LS0/giphy.gif" class="product-img">
+        <img src="./model_image.jpg" class="product-img">
         
         <h1 class="product-title">Future Husband (2026 Model) - Cute Edition | Bhubaneswar One and Only Release</h1>
         
@@ -81,10 +81,11 @@
         <div class="stock">In Stock. Ships to Bubuda immediately.</div>
 
         <ul class="features">
-            <li>High Performance Husband (v2.026)</li>
+            <li>Loving Pookie Husband (v2.026)</li>
             <li>Comes with "Always trying to cook" cooking skills 🍖</li>
+            <li>Unlimited love, respect, and affection</li>
             <li>Compatible with K-Drama Marathons 📺</li>
-            <li>Includes lifetime support & Unlmted Gelo ☁️</li>
+            <li>Includes lifetime support & Care ☁️</li>
             <li>Warning: May make bad jokes</li>
         </ul>
 
@@ -105,11 +106,11 @@
     </div>
 
     <div id="success-screen">
-        <img src="https://media.giphy.com/media/UKWXwkVFXUYe8r6f83/giphy.gif" style="width:100%; max-width:400px;">
+        <img src="./success.jpg" style="width:50%; max-width:400px;border-radius: 2px;margin: auto;">
         
         <h1 style="color: #007600;">Order Placed! ✅</h1>
         <p>Delivery Date: Feb 22nd</p>
-        <p> Love you Bubuda! ❤️</p>
+        <p>Happy Propose day! Love you Bubuda! ❤️</p>
     </div>
 
     <script>
@@ -132,7 +133,7 @@
         const offers = [
             {
                 title: "Wait! Gelo Upgrade!",
-                img: "./gulugulu.jpg", 
+                img: "./dudbubukiss.png", 
                 text: "I will gulugulu puchu puchu you always!"
             },
             {
@@ -143,12 +144,12 @@
             {
                 title: "Lifetime Foot Massage!",
                 img: "./foot_massage.jpg",
-                text: "Unlimited token for massages after wedding."
+                text: "Unlimited token for massagedudu after wedding."
             },
             {
                 title: "Last Chance Offer!",
                 img: "request_please.jpg",
-                text: "PLEASE? I'll be the best husband ever! (No returns allowed anyway)"
+                text: "PLEASE? I'll be the best husbandudu ever! (No returns allowed anyway)"
             }
         ];
 
@@ -171,7 +172,7 @@
             if (offerIndex < offers.length) {
                 updateOffer();
             } else {
-                alert("Out of stock on 'No'! You have to take me now! ❤️");
+                alert("Hoto?hoto?😭!\n System critical error! \nPlease accept!\nKiss attack yum yum yum yum yum yum \n and mela vanlentine ban jao na du please??????? ❤️");
                 finishDeal();
             }
         }
