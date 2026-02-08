@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Security Check & Deal</title>
+    <title>Security Check</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Pacifico&display=swap" rel="stylesheet">
     <style>
         /* CSS STYLES - NO NEED TO EDIT THIS SECTION UNLESS YOU WANT TO CHANGE COLORS */
@@ -52,13 +52,13 @@
 
     <div id="captcha-screen">
         <div class="captcha-header">
-            <h2>Select all images with</h2>
-            <h1>The Groom 🤵</h1>
+            <h2>Please select all the images that show</h2>
+            <h1>The Love of your life 🤵</h1>
             <p>Click verify once none are left.</p>
         </div>
         
         <div class="grid">
-            <img src="https://media.giphy.com/media/l0HlCqV35hdEg2LS0/giphy.gif" class="grid-img" onclick="toggleSelect(this)">
+            <img src="./img1.jpg" class="grid-img" onclick="toggleSelect(this)">
             <img src="https://source.unsplash.com/random/100x100?wedding" class="grid-img" onclick="toggleSelect(this)">
             <img src="https://source.unsplash.com/random/100x100?man" class="grid-img" onclick="toggleSelect(this)">
             <img src="https://source.unsplash.com/random/100x100?groom" class="grid-img" onclick="toggleSelect(this)">
@@ -75,21 +75,21 @@
     <div id="product-screen">
         <img src="https://media.giphy.com/media/l0HlCqV35hdEg2LS0/giphy.gif" class="product-img">
         
-        <h1 class="product-title">Future Husband (2026 Model) - GenAI Edition | Bhubaneswar Limited Release</h1>
+        <h1 class="product-title">Future Husband (2026 Model) - Cute Edition | Bhubaneswar One and Only Release</h1>
         
         <div class="price">Price: 1 ❤️ (Non-refundable)</div>
         <div class="stock">In Stock. Ships to Bubuda immediately.</div>
 
         <ul class="features">
             <li>High Performance Husband (v2.026)</li>
-            <li>Comes with Mutton Kassa cooking skills 🍖</li>
+            <li>Comes with "Always trying to cook" cooking skills 🍖</li>
             <li>Compatible with K-Drama Marathons 📺</li>
-            <li>Includes lifetime tech support & AWS credits ☁️</li>
+            <li>Includes lifetime support & Unlmted Gelo ☁️</li>
             <li>Warning: May make bad jokes</li>
         </ul>
 
         <br>
-        <button class="action-btn buy-now" onclick="finishDeal()">Add to Cart (YES)</button>
+        <button class="action-btn buy-now" onclick="finishDeal()">Add to Cart(Make him your Valentine) (YES)</button>
         <button class="action-btn save-later" onclick="triggerNegotiation()">Save for Later (No)</button>
     </div>
 
@@ -108,8 +108,8 @@
         <img src="https://media.giphy.com/media/UKWXwkVFXUYe8r6f83/giphy.gif" style="width:100%; max-width:400px;">
         
         <h1 style="color: #007600;">Order Placed! ✅</h1>
-        <p>Delivery Date: Feb 14th & Feb 22nd</p>
-        <p>Thank you Bubuda! ❤️</p>
+        <p>Delivery Date: Feb 22nd</p>
+        <p> Love you Bubuda! ❤️</p>
     </div>
 
     <script>
@@ -131,23 +131,23 @@
         // Change 'title' and 'text' to whatever you want to offer
         const offers = [
             {
-                title: "Wait! Mutton Upgrade!",
-                img: "https://glebekitchen.com/wp-content/uploads/2019/12/muttoncurrytop-1.jpg", 
-                text: "I will cook spicy Mutton Kassa for you every Sunday!"
+                title: "Wait! Gelo Upgrade!",
+                img: "./gulugulu.jpg", 
+                text: "I will gulugulu puchu puchu you always!"
             },
             {
-                title: "K-Drama Subscription!",
-                img: "https://i.pinimg.com/originals/e5/23/e8/e523e80d998188151392dfde7a718c32.jpg", 
-                text: "I will watch 'Business Proposal' again without checking my phone!"
+                title: "Attention Subscription!",
+                img: "./attention.jpg", 
+                text: "I will give you 100 200 300 infinite attention to you !"
             },
             {
                 title: "Lifetime Foot Massage!",
-                img: "https://media.giphy.com/media/l2Je2M4Nfrit0L7sQ/giphy.gif",
-                text: "Unlimited token for massages after wedding shopping."
+                img: "./foot_massage.jpg",
+                text: "Unlimited token for massages after wedding."
             },
             {
                 title: "Last Chance Offer!",
-                img: "https://media.giphy.com/media/26FLdmIp6wJr91JAI/giphy.gif",
+                img: "request_please.jpg",
                 text: "PLEASE? I'll be the best husband ever! (No returns allowed anyway)"
             }
         ];
